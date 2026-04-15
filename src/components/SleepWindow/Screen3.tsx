@@ -32,7 +32,7 @@ const commitments = [
   { emoji: '✍️', text: 'Finish my to-do list early' },
 ];
 
-const Screen3 = ({ bedtime, wakeTime, duration }: Screen3Props) => {
+const Screen3 = ({ bedtime, wakeTime, duration, onReset }: Screen3Props) => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const [selectedCommitment, setSelectedCommitment] = useState<number | null>(null);
   const [confettiTrigger, setConfettiTrigger] = useState(0);
