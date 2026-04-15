@@ -5,6 +5,7 @@ interface Screen3Props {
   bedtime: string;
   wakeTime: string;
   duration: number;
+  onReset?: () => void;
 }
 
 const cardStyle: React.CSSProperties = {
