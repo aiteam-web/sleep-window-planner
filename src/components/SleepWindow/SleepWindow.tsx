@@ -80,7 +80,7 @@ const SleepWindow = ({ onExit }: SleepWindowProps) => {
             />
           )}
           {displayScreen === 3 && (
-            <Screen3 bedtime={bedStr} wakeTime={wakeStr} duration={sleepDuration} />
+            <Screen3 bedtime={bedStr} wakeTime={wakeStr} duration={sleepDuration} onReset={() => navigate(1)} />
           )}
         </div>
       </div>
