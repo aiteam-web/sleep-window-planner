@@ -5,6 +5,7 @@ interface Screen3Props {
   bedtime: string;
   wakeTime: string;
   duration: number;
+  onReset?: () => void;
 }
 
 const cardStyle: React.CSSProperties = {
@@ -31,7 +32,7 @@ const commitments = [
   { emoji: '✍️', text: 'Finish my to-do list early' },
 ];
 
-const Screen3 = ({ bedtime, wakeTime, duration }: Screen3Props) => {
+const Screen3 = ({ bedtime, wakeTime, duration, onReset }: Screen3Props) => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const [selectedCommitment, setSelectedCommitment] = useState<number | null>(null);
   const [confettiTrigger, setConfettiTrigger] = useState(0);
@@ -156,14 +157,17 @@ const Screen3 = ({ bedtime, wakeTime, duration }: Screen3Props) => {
         </p>
       </div>
 
-      <button onClick={() => !isSaved && setIsSaved(true)} style={{
+      <button onClick={() => {
+        if (isSaved) return;
+        setIsSaved(true);
+        setTimeout(() => onReset?.(), 1200);
+      }} style={{
         width: '100%', padding: 14, borderRadius: 18, border: 'none',
         background: isSaved
           ? 'linear-gradient(135deg, #28c878, #1a9a58)'
           : 'linear-gradient(135deg, var(--sleep-accent-hex), var(--sleep-purple-hex))',
         color: '#fff', fontWeight: 500, fontSize: 15,
         cursor: isSaved ? 'default' : 'pointer',
-        pointerEvents: isSaved ? 'none' : 'auto',
         transition: 'background 0.3s ease',
       }}>
         {isSaved ? '✓ Sleep window saved!' : 'Save my sleep window ✓'}
